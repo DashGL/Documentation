@@ -6,7 +6,7 @@ description: Structures and linked data definitions for materials
 
 ## Json
 
-The only required field for `Materials` is the `name`. All other fields will provide default values if not provided.&#x20;
+The only required field for `Materials` is the `name`. All other fields will provide default values if not provided.
 
 ### Format
 
@@ -19,8 +19,7 @@ The only required field for `Materials` is the `name`. All other fields will pro
 	"color": "rgb(255,255,255)",
 	"map": null,
 	"renderSide": "front",
-	"shadowSide": "front",
-	"vertexColor" : true
+	"vertexColor" : true,
 	"blending" : "custom",
 	"blendEquation" : "additive",
 	"blendSrc" : "srcAlphaFactor",
@@ -64,15 +63,15 @@ type DashMatrial = {
 
 #### name
 
-The name of the material as a string. This field is required. The max length of the string is **31** characters to conform with the binary version of the file format. The name is required as editing programs require materials to have a name.&#x20;
+The name of the material as a string. This field is required. The max length of the string is **31** characters to conform with the binary version of the file format. The name is required as editing programs require materials to have a name.
 
-In cases for exporting a material with no name to the `.dmx` format, the default behavior will be to assign the material a name in the format of `material-%03d` with the index of the material being zero padded three characters.&#x20;
+In cases for exporting a material with no name to the `.dmx` format, the default behavior will be to assign the material a name in the format of `material-%03d` with the index of the material being zero padded three characters.
 
 Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.name](https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.name)
 
 #### transparent
 
-A boolean to value to indicate if the material uses alpha or not. The determines if the material uses the alpha channel for the diffuse color (`.color`), diffuse texture(`.map`) and vertex colors. The `opacity` value will be ignored if this value is `false`.&#x20;
+A boolean to value to indicate if the material uses alpha or not. The determines if the material uses the alpha channel for the diffuse color (`.color`), diffuse texture(`.map`) and vertex colors. The `opacity` value will be ignored if this value is `false`.
 
 Default is `false`.
 
@@ -80,7 +79,7 @@ Reference: [https://threejs.org/docs/index.html#api/en/materials/Material.transp
 
 #### alphaTest
 
-Sets the alpha value to be used when running an alpha test. The material will not be rendered if the opacity is lower than this value.&#x20;
+Sets the alpha value to be used when running an alpha test. The material will not be rendered if the opacity is lower than this value.
 
 Default is `0`.
 
@@ -88,7 +87,7 @@ Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Materia
 
 #### visible
 
-Defines whether this material is visible.&#x20;
+Defines whether this material is visible.
 
 Default is `true`.
 
@@ -104,7 +103,7 @@ Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/MeshBas
 
 #### map
 
-The color map. May optionally include an alpha channel, typically combined with `transparent` or `alphaTest`.&#x20;
+The color map. May optionally include an alpha channel, typically combined with `transparent` or `alphaTest`.
 
 Default is `null`.
 
@@ -114,16 +113,6 @@ Reference: [https://threejs.org/docs/index.html#api/en/materials/MeshBasicMateri
 
 Defines which side of faces will be rendered - front, back or both. Default is `DashMaterialSide.FrontSide`. Other options are `DashMaterialSide.BackSide` and `DashMaterialSide.DoubleSide`.
 
-Default is: `DashMaterialSide.FrontSide`
-
-Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.side](https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.side)
-
-#### shadowSide
-
-Defines which side of faces cast shadows. When set, can be `DashMaterialSide.FrontSide`, `DashMaterialSide.BackSide`, or `DashMaterialSide.DoubleSide`.&#x20;
-
-Default is `null`.
-
 If `null`, the side casting shadows is determined as follows:
 
 | Material.renderSide         | Side casting shadows |
@@ -132,26 +121,34 @@ If `null`, the side casting shadows is determined as follows:
 | DashMaterialSide.BackSide   | front side           |
 | DashMaterialSide.DoubleSide | both sides           |
 
-Reference: [https://threejs.org/docs/index.html#api/en/materials/Material.shadowSide](https://threejs.org/docs/index.html#api/en/materials/Material.shadowSide)
+Default is: `DashMaterialSide.FrontSide`
+
+Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.side](https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.side)
 
 #### vertexColors
 
-Defines whether vertex coloring is used.&#x20;
+Defines whether vertex coloring is used.
 
 Default is `false`.
 
 Reference: [https://threejs.org/docs/index.html#api/en/materials/Material.vertexColors](https://threejs.org/docs/index.html#api/en/materials/Material.vertexColors)
 
+### blending
+
+
+
+
 ### Enums
 
-<pre class="language-typescript"><code class="lang-typescript">enum DashShaderType {
+```typescript
+enum DashShaderType {
   Basic = "basic",
   Lambert = "lambert",
   Phong = "phong",
 }
 
-<strong>enum DashMaterialSide {
-</strong>  FrontSide = "front",
+enum DashMaterialSide {
+  FrontSide = "front",
   BackSide = "back",
   DoubleSide = "double",
 }
@@ -185,7 +182,8 @@ enum DashSourceFactors {
   DstColorFactor = "dstColor",
   OneMinusDstColorFactor = "oneMinusDstColor",
   SrcAlphaSaturateFactor = "srcAlphaSaturate",
-}</code></pre>
+}
+```
 
 ## Binary
 
@@ -221,11 +219,10 @@ typedef struct {
 | ------ | ------------- | ---------------- | ------------- | ------------- |
 | 0x0000 | Material Name | 0000             | 0000          | 0000          |
 | 0x0010 | 0000          | 0000             | 0000          | 0000          |
-| 0x0020 | index         | transparent      |               | alphaTest     |
-| 0x0030 |               | useVertexColor   |               | visible       |
-| 0x0040 | renderSide    | shadowSide       | useMap        | mapIndex      |
-| 0x0050 | shaderType    | color            | emissiveColor | specularColor |
-| 0x0060 | blending      | blendingEquation | blendingSrc   | blendingDst   |
+| 0x0020 | index         |  visible         | transparent   | useVertexColor |
+| 0x0030 | renderSide    | alphaTest        | useMap        | mapIndex      |
+| 0x0040 | shaderType    | color            | emissiveColor | specularColor |
+| 0x0050 | blending      | blendingEquation | blendingSrc   | blendingDst   |
 
 ### Terms
 
