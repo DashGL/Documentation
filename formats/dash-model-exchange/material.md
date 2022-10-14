@@ -24,7 +24,7 @@ The only required field for `Materials` is the `name`. All other fields will pro
 	"blendEquation" : "additive",
 	"blendSrc" : "srcAlphaFactor",
 	"blendDst" : "oneMinusSrcAlphaFactor",
-	"emissiveColor": "#rgb(0,0,0)",
+	"emissiveColor": "rgb(0,0,0)",
 	"emissiveIntensity": 1,
 	"specularColor": "rgb(0,0,0)",
 	"shininess": 30,
@@ -135,8 +135,53 @@ Reference: [https://threejs.org/docs/index.html#api/en/materials/Material.vertex
 
 ### blending
 
+Which blending to use when displaying objects with this material.
+This must be set to CustomBlending to use custom blendSrc, blendDst or blendEquation.
+See the blending mode constants for all possible values. 
 
+Default is `normal`. 
 
+Reference: https://threejs.org/docs/#api/en/materials/Material.blending
+
+### blendEquation
+
+Blending equation to use when applying blending. See the blending equation constants for all possible values.
+
+The material's blending must be set to CustomBlending for this to have any effect. 
+
+Default is `add`.
+
+Reference: https://threejs.org/docs/#api/en/materials/Material.blendEquation
+
+### blendSrc
+
+Blending source. See the source factors constants for all possible values.
+The material's blending must be set to CustomBlending for this to have any effect. 
+
+Default is `SrcAlphaFactor`.
+
+Reference: https://threejs.org/docs/#api/en/materials/Material.blendSrc
+
+### blendDst
+
+Blending destination. See the destination factors constants for all possible values.
+The material's blending must be set to CustomBlending for this to have any effect. 
+
+Default is `OneMinusSrcAlphaFactor`.
+
+Reference: https://threejs.org/docs/#api/en/materials/Material.blendDst
+
+### emissiveColor
+
+### emissiveIntensity
+
+### specularColor
+
+### shininess
+
+### shaderType
+
+### opacity
 
 ### Enums
 
