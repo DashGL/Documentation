@@ -96,15 +96,15 @@ Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Materia
 
 #### vertexColors
 
-Defines whether vertex coloring is used. 
- 
-Default is `false`. 
+Defines whether vertex coloring is used.
+
+Default is `false`.
 
 Reference: [https://threejs.org/docs/#api/en/materials/Material.vertexColors](https://threejs.org/docs/#api/en/materials/Material.vertexColors)
 
 #### color
 
-The diffuse color for the material. 
+The diffuse color for the material.
 
 Expected format an color value in the functional notation is ‘rgb(’ followed by a comma-separated list of three numerical values, three integer values between 0 and 255 corresponding to red, green, and blue values followed by ‘)’.
 
@@ -114,7 +114,7 @@ Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/MeshBas
 
 #### map
 
-The color map. May optionally include an alpha channel, typically combined with `transparent` or `alphaTest`. The value is the index of the texture to use for diffuse color mapping. A `null` value indicates no texture map is assigned. 
+The color map. May optionally include an alpha channel, typically combined with `transparent` or `alphaTest`. The value is the index of the texture to use for diffuse color mapping. A `null` value indicates no texture map is assigned.
 
 Default is `null`.
 
@@ -138,41 +138,37 @@ Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Materia
 
 #### blending
 
-Which blending to use when displaying objects with this material.
-This must be set to CustomBlending to use custom blendSrc, blendDst or blendEquation.
-See the blending mode constants for all possible values. 
+Which blending to use when displaying objects with this material. This must be set to CustomBlending to use custom blendSrc, blendDst or blendEquation. See the blending mode constants for all possible values.
 
-Default is `normal`. 
+Default is `normal`.
 
-Reference: https://threejs.org/docs/#api/en/materials/Material.blending
+Reference: [https://threejs.org/docs/#api/en/materials/Material.blending](https://threejs.org/docs/#api/en/materials/Material.blending)
 
 #### blendEquation
 
 Blending equation to use when applying blending. See the blending equation constants for all possible values.
 
-The material's blending must be set to CustomBlending for this to have any effect. 
+The material's blending must be set to CustomBlending for this to have any effect.
 
 Default is `add`.
 
-Reference: https://threejs.org/docs/#api/en/materials/Material.blendEquation
+Reference: [https://threejs.org/docs/#api/en/materials/Material.blendEquation](https://threejs.org/docs/#api/en/materials/Material.blendEquation)
 
 #### blendSrc
 
-Blending source. See the source factors constants for all possible values.
-The material's blending must be set to CustomBlending for this to have any effect. 
+Blending source. See the source factors constants for all possible values. The material's blending must be set to CustomBlending for this to have any effect.
 
 Default is `SrcAlphaFactor`.
 
-Reference: https://threejs.org/docs/#api/en/materials/Material.blendSrc
+Reference: [https://threejs.org/docs/#api/en/materials/Material.blendSrc](https://threejs.org/docs/#api/en/materials/Material.blendSrc)
 
 #### blendDst
 
-Blending destination. See the destination factors constants for all possible values.
-The material's blending must be set to CustomBlending for this to have any effect. 
+Blending destination. See the destination factors constants for all possible values. The material's blending must be set to CustomBlending for this to have any effect.
 
 Default is `OneMinusSrcAlphaFactor`.
 
-Reference: https://threejs.org/docs/#api/en/materials/Material.blendDst
+Reference: [https://threejs.org/docs/#api/en/materials/Material.blendDst](https://threejs.org/docs/#api/en/materials/Material.blendDst)
 
 #### emissive
 
@@ -182,7 +178,7 @@ Expected format an color value in the functional notation is ‘rgb(’ followed
 
 Default is: `rgb(0, 0, 0)`
 
-Reference: https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissive
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissive](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissive)
 
 #### emissiveIntensity
 
@@ -190,7 +186,7 @@ Intensity of the emissive light. Modulates the emissive color. The material's sh
 
 Default is `1`.
 
-https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity)
 
 #### specular
 
@@ -198,7 +194,7 @@ Specular color of the material. The material's shader must be set to `phong` or 
 
 Default is: `rgb(17, 17, 17)`
 
-Reference: https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.specular
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.specular](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.specular)
 
 #### shininess
 
@@ -210,7 +206,7 @@ Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.shinine
 
 #### shaderType
 
-Indicates the shader type for the material. Options are `basic`, `lambert` and `phong`. 
+Indicates the shader type for the material. Options are `basic`, `lambert` and `phong`.
 
 #### opacity
 
@@ -218,17 +214,17 @@ Float in the range of 0.0 - 1.0 indicating how transparent the material is. A va
 
 If the material's transparent property is not set to `true`, the material will remain fully opaque and this value will only affect its color.
 
-Default is `1`. 
+Default is `1`.
 
 Reference: [https://threejs.org/docs/#api/en/materials/Material.opacity](https://threejs.org/docs/#api/en/materials/Material.opacity)
 
 #### flatShading
 
- Define whether the material is rendered with flat shading. The material's shader must be set to `phong` or `lambert` for this to have any effect.
- 
- Default is `false`. 
+Define whether the material is rendered with flat shading. The material's shader must be set to `phong` or `lambert` for this to have any effect.
 
- Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading)
+Default is `false`.
+
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading)
 
 #### Enums
 
@@ -307,22 +303,21 @@ typedef struct {
 
 ### Table
 
-| Offset | 0x00          | 0x04             | 0x08          | 0x0c          |
-| ------ | ------------- | ---------------- | ------------- | ------------- |
-| 0x0000 | name | 0000             | 0000          | 0000          |
-| 0x0010 | 0000          | 0000             | 0000          | 0000          |
-| 0x0020 | index         |    shader       |  0000  | 0000 |
-| 0x0030 | visible | transparent | vertexColors | renderSide | 
-| 0x0040 | flatShading  | alphaTest | useMap | mapIndex |
-| 0x0050 | blending      | blendingEquation | blendingSrc   | blendingDst   |
-| 0x0060 | color[0] | color[1] | color[2] | transparency |
-| 0x0070 | specular[0] | specular[1] | specular[2] | shininess |
-| 0x0080 | emissive[0] | emissive[1] | emissive[2] | emissiveIntensity |
+| Offset | 0x00         | 0x04             | 0x08         | 0x0c              |
+| ------ | ------------ | ---------------- | ------------ | ----------------- |
+| 0x0000 | name         | 0000             | 0000         | 0000              |
+| 0x0010 | 0000         | 0000             | 0000         | 0000              |
+| 0x0020 | index        | shader           | 0000         | 0000              |
+| 0x0030 | visible      | transparent      | vertexColors | renderSide        |
+| 0x0040 | flatShading  | alphaTest        | useMap       | mapIndex          |
+| 0x0050 | blending     | blendingEquation | blendingSrc  | blendingDst       |
+| 0x0060 | color\[0]    | color\[1]        | color\[2]    | transparency      |
+| 0x0070 | specular\[0] | specular\[1]     | specular\[2] | shininess         |
+| 0x0080 | emissive\[0] | emissive\[1]     | emissive\[2] | emissiveIntensity |
 
 ### Terms
 
-The binary format of the material format uses the same attribute names where
-ever possible. The difference is that in the binary version, default values WILL NOT BE PROVIDED. They MUST BE defined in the struct.
+The binary format of the material format uses the same attribute names where ever possible. The difference is that in the binary version, default values WILL NOT BE PROVIDED. They MUST BE defined in the struct.
 
 #### name
 
@@ -330,23 +325,21 @@ The name of the texture. This is a zero terminated string value. Such that the l
 
 Reference: [https://threejs.org/docs/#api/en/materials/Material.name](https://threejs.org/docs/#api/en/materials/Material.name)
 
-
 #### index
 
 The index of the material in the array starting from zero.
 
 #### shader
 
-Indicates the shader type for the material. Options are `DASH_MATERIAL_BASIC`, `DASH_MATERIAL_LAMBERT` and `DASH_MATERIAL_PHONG`. Values must be zero terminated to fit `0x0c` bytes. 
+Indicates the shader type for the material. Options are `DASH_MATERIAL_BASIC`, `DASH_MATERIAL_LAMBERT` and `DASH_MATERIAL_PHONG`. Values must be zero terminated to fit `0x0c` bytes.
 
 #### visible
 
-Defines whether this material is visible. Options are `DASH_MATERIAL_TRUE` and `DASH_MATERIAL_FALSE`. 
+Defines whether this material is visible. Options are `DASH_MATERIAL_TRUE` and `DASH_MATERIAL_FALSE`.
 
 Default is `DASH_MATERIAL_TRUE`.
 
 Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.visible](https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.visible)
-
 
 #### transparent
 
@@ -358,7 +351,7 @@ Reference: [https://threejs.org/docs/index.html#api/en/materials/Material.transp
 
 #### vertexColors
 
-Defines whether vertex coloring is used. Options are `DASH_MATERIAL_TRUE` and `DASH_MATERIAL_FALSE`. 
+Defines whether vertex coloring is used. Options are `DASH_MATERIAL_TRUE` and `DASH_MATERIAL_FALSE`.
 
 Default is `DASH_MATERIAL_FALSE`.
 
@@ -370,11 +363,11 @@ Defines which side of faces will be rendered - front, back or both. Options are 
 
 The side casting shadows is determined as follows:
 
-| Material.renderSide         | Side casting shadows |
-| --------------------------- | -------------------- |
-| DASH_MATERIAL_FRONTSIDE  | back side            |
-| DASH_MATERIAL_BACKSIDE   | front side           |
-| DASH_MATERIAL_DOUBLESIDE | both sides           |
+| Material.renderSide        | Side casting shadows |
+| -------------------------- | -------------------- |
+| DASH\_MATERIAL\_FRONTSIDE  | back side            |
+| DASH\_MATERIAL\_BACKSIDE   | front side           |
+| DASH\_MATERIAL\_DOUBLESIDE | both sides           |
 
 Default is: `DASH_MATERIAL_FRONTSIDE`
 
@@ -383,8 +376,8 @@ Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Materia
 #### flatShading
 
 Define whether the material is rendered with flat shading. The material's shader must be set to `DASH_MATERIAL_LAMBERT` or `DASH_MATERIAL_PHONG` for this to have any effect.
- 
-Default is `DASH_MATERIAL_FALSE`. 
+
+Default is `DASH_MATERIAL_FALSE`.
 
 Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading)
 
@@ -404,18 +397,15 @@ Default is: `DASH_MATERIAL_FALSE`
 
 #### mapIndex
 
-The color map. May optionally include an alpha channel, typically combined with `transparent` or `alphaTest`. The value is the index of the texture to use for diffuse color mapping. The material's `useMap` must be set to `DASH_MATERIAL_TRUE` for this to have any effect. 
+The color map. May optionally include an alpha channel, typically combined with `transparent` or `alphaTest`. The value is the index of the texture to use for diffuse color mapping. The material's `useMap` must be set to `DASH_MATERIAL_TRUE` for this to have any effect.
 
 Default is `0`.
 
-
 #### blending
 
-Which blending to use when displaying objects with this material.
-This must be set to `DASH_MATERIAL_BLENDING_CUSTOM` to use custom `blendSrc`, `blendDst` or `blendEquation`.
-See the blending mode constants for all possible values. 
+Which blending to use when displaying objects with this material. This must be set to `DASH_MATERIAL_BLENDING_CUSTOM` to use custom `blendSrc`, `blendDst` or `blendEquation`. See the blending mode constants for all possible values.
 
-Default is `DASH_MATERIAL_BLENDING_NORMAL`. 
+Default is `DASH_MATERIAL_BLENDING_NORMAL`.
 
 Reference: [https://threejs.org/docs/#api/en/materials/Material.blending](https://threejs.org/docs/#api/en/materials/Material.blending)
 
@@ -423,7 +413,7 @@ Reference: [https://threejs.org/docs/#api/en/materials/Material.blending](https:
 
 Blending equation to use when applying blending. See the blending equation constants for all possible values.
 
-The material's blending must be set to CustomBlending for this to have any effect. 
+The material's blending must be set to CustomBlending for this to have any effect.
 
 Default is `DASH_MATERIAL_BLEND_EQUATION_ADD`.
 
@@ -431,8 +421,7 @@ Reference: [https://threejs.org/docs/#api/en/materials/Material.blendEquation](h
 
 #### blendSrc
 
-Blending source. See the source factors constants for all possible values.
-The material's blending must be set to CustomBlending for this to have any effect. 
+Blending source. See the source factors constants for all possible values. The material's blending must be set to CustomBlending for this to have any effect.
 
 Default is `DASH_MATERIAL_SRC_ALPHA`.
 
@@ -440,13 +429,61 @@ Reference: [https://threejs.org/docs/#api/en/materials/Material.blendSrc](https:
 
 #### blendDst
 
-Blending destination. See the destination factors constants for all possible values.
-The material's blending must be set to CustomBlending for this to have any effect. 
+Blending destination. See the destination factors constants for all possible values. The material's blending must be set to CustomBlending for this to have any effect.
 
 Default is `DASH_MATERIAL_ONE_MINUS_SRC_ALPHA`.
 
 Reference: [https://threejs.org/docs/#api/en/materials/Material.blendDst](https://threejs.org/docs/#api/en/materials/Material.blendDst)
 
+#### color
+
+The diffuse color for the material.
+
+Default is: `{ 1.0f, 1.0f, 1.0f }`
+
+Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/MeshBasicMaterial.color](https://threejs.org/docs/index.html?q=mater#api/en/materials/MeshBasicMaterial.color)
+
+#### opacity
+
+Float in the range of 0.0 - 1.0 indicating how transparent the material is. A value of 0.0 indicates fully transparent, 1.0 is fully opaque.
+
+If the material's transparent property is not set to `true`, the material will remain fully opaque and this value will only affect its color.
+
+Default is `1`.
+
+Reference: [https://threejs.org/docs/#api/en/materials/Material.opacity](https://threejs.org/docs/#api/en/materials/Material.opacity)
+
+#### specular
+
+Specular color of the material. The material's shader must be set to `phong` or `lambert` for this to have any effect.
+
+Default is: `{ 0.066f, 0.066f, 0.066f }`
+
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.specular](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.specular)
+
+#### shininess
+
+How shiny the .specular highlight is; a higher value gives a sharper highlight.
+
+Default is `30f`.
+
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.shininess](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.shininess)
+
+#### emissive
+
+Emissive (light) color of the material, essentially a solid color unaffected by other lighting. The material's shader must be set to `phong` for this to have any effect.
+
+Default is: `{ 0.0f, 0.0f, 0.0f }`
+
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissive](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissive)
+
+#### emissiveIntensity
+
+Intensity of the emissive light. Modulates the emissive color. The material's shader must be set to `phong` for this to have any effect.
+
+Default is `1f`.
+
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity)
 
 ### **Constants**
 
