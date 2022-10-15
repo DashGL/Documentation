@@ -24,7 +24,7 @@ The only required field for `Materials` is the `name`. All other fields will pro
 	"blendEquation" : "additive",
 	"blendSrc" : "srcAlphaFactor",
 	"blendDst" : "oneMinusSrcAlphaFactor",
-	"emissiveColor": "rgb(0,0,0)",
+	"emissive": "rgb(0,0,0)",
 	"emissiveIntensity": 1,
 	"specularColor": "rgb(0,0,0)",
 	"shininess": 30,
@@ -52,7 +52,7 @@ type DashMatrial = {
     blendDst: DashSourceFactors | undefined;
     emissiveColor: string | undefined;
     emissiveIntensity: number | undefined;
-    specularColor: string | undefined;
+    specular: string | undefined;
     shininess: number | undefined;
     shaderType: DashShaderType | undefined;
     opacity: number | undefined;
@@ -95,7 +95,9 @@ Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Materia
 
 #### color
 
-The diffuse color for the material. Expected format an color value in the functional notation is ‘rgb(’ followed by a comma-separated list of three numerical values, three integer values between 0 and 255 corresponding to red, green, and blue values followed by ‘)’.
+The diffuse color for the material. 
+
+Expected format an color value in the functional notation is ‘rgb(’ followed by a comma-separated list of three numerical values, three integer values between 0 and 255 corresponding to red, green, and blue values followed by ‘)’.
 
 Default is: `rgb(255, 255, 255)`
 
@@ -133,7 +135,7 @@ Default is `false`.
 
 Reference: [https://threejs.org/docs/index.html#api/en/materials/Material.vertexColors](https://threejs.org/docs/index.html#api/en/materials/Material.vertexColors)
 
-### blending
+#### blending
 
 Which blending to use when displaying objects with this material.
 This must be set to CustomBlending to use custom blendSrc, blendDst or blendEquation.
@@ -143,7 +145,7 @@ Default is `normal`.
 
 Reference: https://threejs.org/docs/#api/en/materials/Material.blending
 
-### blendEquation
+#### blendEquation
 
 Blending equation to use when applying blending. See the blending equation constants for all possible values.
 
@@ -153,7 +155,7 @@ Default is `add`.
 
 Reference: https://threejs.org/docs/#api/en/materials/Material.blendEquation
 
-### blendSrc
+#### blendSrc
 
 Blending source. See the source factors constants for all possible values.
 The material's blending must be set to CustomBlending for this to have any effect. 
@@ -162,7 +164,7 @@ Default is `SrcAlphaFactor`.
 
 Reference: https://threejs.org/docs/#api/en/materials/Material.blendSrc
 
-### blendDst
+#### blendDst
 
 Blending destination. See the destination factors constants for all possible values.
 The material's blending must be set to CustomBlending for this to have any effect. 
@@ -171,19 +173,56 @@ Default is `OneMinusSrcAlphaFactor`.
 
 Reference: https://threejs.org/docs/#api/en/materials/Material.blendDst
 
-### emissiveColor
+#### emissive
 
-### emissiveIntensity
+Emissive (light) color of the material, essentially a solid color unaffected by other lighting. The material's shader must be set to `phong` for this to have any effect.
 
-### specularColor
+Expected format an color value in the functional notation is ‘rgb(’ followed by a comma-separated list of three numerical values, three integer values between 0 and 255 corresponding to red, green, and blue values followed by ‘)’.
 
-### shininess
+Default is: `rgb(0, 0, 0)`
 
-### shaderType
+Reference: https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissive
 
-### opacity
+#### emissiveIntensity
 
-### Enums
+Intensity of the emissive light. Modulates the emissive color. The material's shader must be set to `phong` for this to have any effect.
+
+Default is `1`.
+
+https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity
+
+#### specular
+
+Specular color of the material. The material's shader must be set to `phong` or `lambert` for this to have any effect.
+
+Default is: `rgb(17, 17, 17)`
+
+Reference: https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.specular
+
+#### shininess
+
+How shiny the .specular highlight is; a higher value gives a sharper highlight.
+
+Default is `30`.
+
+https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.shininess
+
+#### shaderType
+
+Indicates the shader type for the material. Options are `basic`, `lambert` and `phong`. 
+
+#### opacity
+
+Float in the range of 0.0 - 1.0 indicating how transparent the material is. A value of 0.0 indicates fully transparent, 1.0 is fully opaque.
+
+If the material's transparent property is not set to `true`, the material will remain fully opaque and this value will only affect its color.
+
+Default is `1`. 
+
+Reference: https://threejs.org/docs/#api/en/materials/Material.opacity
+
+
+#### Enums
 
 ```typescript
 enum DashShaderType {
@@ -237,24 +276,23 @@ enum DashSourceFactors {
 ```c
 typedef struct {
 	char name[0x20];
-	int16_t mat_id;
-	int16_t tex_id;
-	uint16_t use_blending;
-	uint16_t blend_equation;
-	uint16_t blend_src;
-	uint16_t blend_dst;
-	uint16_t skinning;
-	uint16_t shader_type;
-	uint16_t face_side;
-	uint16_t shadow_side;
-	uint16_t ignore_lights;
-	uint16_t vertex_color;
-	uint16_t use_alpha;
-	uint16_t skip_render;
-	float alpha_test;
-	float diffuse[4];
-	float emissive[4];
-	float specular[4];
+	uint32_t index;
+	uint32_t visible;
+  uint32_t transparent;
+  uint32_t useVertexColor;
+  uint32_t renderSide;
+  float alphaTest;
+  uint32_t useMap;
+  uint32_t mapIndex;
+  uint32_t shader;
+  uint8_t color[4];
+  uint8_t emissive[4];
+  uint8_t specular[4];
+  uint32_t blending;
+  uint32_t blendingEquation; 
+  uint32_t blendingSrc;
+  uint32_t blendingDst;
+
 } DashMaterial;
 ```
 
@@ -262,16 +300,20 @@ typedef struct {
 
 | Offset | 0x00          | 0x04             | 0x08          | 0x0c          |
 | ------ | ------------- | ---------------- | ------------- | ------------- |
-| 0x0000 | Material Name | 0000             | 0000          | 0000          |
+| 0x0000 | name | 0000             | 0000          | 0000          |
 | 0x0010 | 0000          | 0000             | 0000          | 0000          |
 | 0x0020 | index         |  visible         | transparent   | useVertexColor |
 | 0x0030 | renderSide    | alphaTest        | useMap        | mapIndex      |
-| 0x0040 | shaderType    | color            | emissiveColor | specularColor |
+| 0x0040 | shader    |             |  |  |
 | 0x0050 | blending      | blendingEquation | blendingSrc   | blendingDst   |
+| 0x0060 | diffuse[0] | diffuse[1] | diffuse[2] | transparency |
+| 0x0070 | specular[0] | specular[1] | specular[2] | shininess |
+| 0x0080 | emissive[0] | emissive[1] | emissive[2] | emissiveIntensity |
+
 
 ### Terms
 
-The Dash Model format material definition is based around the Phong shader type, which includes diffuse, emissive and specular definitions. If all of these attributes are not required, the shader\_type paramter can be set to basic or lambert, in which case all of the attributes for phong will still be present in the file (using default values), but the loader will ignore them onload.
+The binary format of the material format uses the same 
 
 ### **Constants**
 
