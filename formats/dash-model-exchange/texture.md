@@ -6,7 +6,7 @@ description: Describes the format for the texture structure and section
 
 ## JSON
 
-The required fields for the JSON version of the format are `name` and `data`.  Default values will be included for the fields where values are not provided to reduce file size.&#x20;
+The required fields for the JSON version of the format are `name` and `data`.  Default values will be included for the fields where values are not provided to reduce file size.
 
 ### Format
 
@@ -40,23 +40,23 @@ type DashTexture = {
 
 #### name
 
-The name of the texture as a string. This field is required. The max length of the string is **31** characters to conform with the binary version of the file format. In cases where images are exported from the file for editing, the images will be assigned these names.&#x20;
+The name of the texture as a string. This field is required. The max length of the string is **31** characters to conform with the binary version of the file format. In cases where images are exported from the file for editing, the images will be assigned these names.
 
 Reference: [https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.name](https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.name)
 
 #### flipY
 
-If set to `true`, the texture is flipped along the vertical axis when uploaded to the GPU. If not provided value is assumed to be `true`.&#x20;
+If set to `true`, the texture is flipped along the vertical axis when uploaded to the GPU. If not provided value is assumed to be `true`.
 
-Reference: [https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.flipY](https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.flipY).&#x20;
+Reference: [https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.flipY](https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.flipY).
 
 #### width
 
-The width of the image in pixels. This value MUST be an integer that is zero or greater. While this value can be extracted from the image data, it is expected to be present for readability.&#x20;
+The width of the image in pixels. This value MUST be an integer that is zero or greater. While this value can be extracted from the image data, it is expected to be present for readability.
 
 #### height
 
-The height of the image in pixels. This value MUST be an integer that is zero or greater. While this value can be extracted from the image data, it is expected to be present for readability.&#x20;
+The height of the image in pixels. This value MUST be an integer that is zero or greater. While this value can be extracted from the image data, it is expected to be present for readability.
 
 #### wrapS
 
@@ -72,7 +72,7 @@ Reference: [https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.
 
 #### data
 
-The data for the image encoded in the "Quite OK Image Format" as a base64 string starting with the constant value of `data:image/qoi;base64,.`&#x20;
+The data for the image encoded in the "Quite OK Image Format" as a base64 string starting with the constant value of `data:image/qoi;base64,.`
 
 **NOTE**: tiling of images in textures only functions if image dimensions are powers of two (2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, ...) in terms of pixels. Individual dimensions need not be equal, but each must be a power of two. This is a limitation of OpenGL.
 
@@ -90,7 +90,7 @@ enum DashTextureWrap {
 
 ## Binary
 
-Textures contain the image data used in the model. Because images are not a fixed size, this property section is divided into two parts, and structured similar to an archive.&#x20;
+Textures contain the image data used in the model. Because images are not a fixed size, this property section is divided into two parts, and structured similar to an archive.
 
 ### Struct
 
@@ -119,41 +119,39 @@ typedef struct {
 
 ### Fields
 
-#### index
-
-The index of the texture in the array starting from zero.&#x20;
-
-Reference: [https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.id](https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.id)
-
 #### name
 
-The name of the texture. This is a zero terminated string value. Such that the last byte in the string must be `0x00`, giving this field a max length of 31 characters and a fixed length of `0x20` bytes.&#x20;
+The name of the texture. This is a zero terminated string value. Such that the last byte in the string must be `0x00`, giving this field a max length of 31 characters and a fixed length of `0x20` bytes.
 
 Reference: [https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.name](https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.name)
 
+#### index
+
+The index of the texture in the array starting from zero.
+
 #### flipY
 
-Is a boolean value defined by `0x00` for `false` and `0x01` for `true`.&#x20;
+Is a boolean value defined by `0x00` for `false` and `0x01` for `true`.
 
-Reference: [https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.flipY](https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.flipY).&#x20;
+Reference: [https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.flipY](https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.flipY).
 
 #### width
 
-The width of the image in pixels.&#x20;
+The width of the image in pixels.
 
 #### height
 
-The height of the image in pixels.&#x20;
+The height of the image in pixels.
 
 #### wrapS
 
-This defines how the texture is wrapped horizontally and corresponds to **U** in UV mapping. The options are `DASH_TEXTURE_REPEAT_WRAP`, `DASH_TEXTURE_CLAMP_WRAP` and `DASH_TEXTURE_MIRROR_WRAP`.&#x20;
+This defines how the texture is wrapped horizontally and corresponds to **U** in UV mapping. The options are `DASH_TEXTURE_REPEAT_WRAP`, `DASH_TEXTURE_CLAMP_WRAP` and `DASH_TEXTURE_MIRROR_WRAP`.
 
 Reference: [https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.wrapS](https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.wrapS)
 
 #### wrapT
 
-This defines how the texture is wrapped vertically and corresponds to **V** in UV mapping. `DASH_TEXTURE_REPEAT_WRAP`, `DASH_TEXTURE_CLAMP_WRAP` and `DASH_TEXTURE_MIRROR_WRAP`.&#x20;
+This defines how the texture is wrapped vertically and corresponds to **V** in UV mapping. `DASH_TEXTURE_REPEAT_WRAP`, `DASH_TEXTURE_CLAMP_WRAP` and `DASH_TEXTURE_MIRROR_WRAP`.
 
 Reference: [https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.wrapT](https://threejs.org/docs/index.html?q=textu#api/en/textures/Texture.wrapT)
 
@@ -163,7 +161,7 @@ The absolute byte offset in the file for the start of the image data
 
 #### byteLength
 
-The byte length of the image data encoded in the "Quite OK Image Format".&#x20;
+The byte length of the image data encoded in the "Quite OK Image Format".
 
 **NOTE**: tiling of images in textures only functions if image dimensions are powers of two (2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, ...) in terms of pixels. Individual dimensions need not be equal, but each must be a power of two. This is a limitation of OpenGL.
 
