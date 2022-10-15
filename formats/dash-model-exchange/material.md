@@ -409,10 +409,48 @@ The color map. May optionally include an alpha channel, typically combined with 
 Default is `0`.
 
 
+#### blending
+
+Which blending to use when displaying objects with this material.
+This must be set to `DASH_MATERIAL_BLENDING_CUSTOM` to use custom `blendSrc`, `blendDst` or `blendEquation`.
+See the blending mode constants for all possible values. 
+
+Default is `DASH_MATERIAL_BLENDING_NORMAL`. 
+
+Reference: [https://threejs.org/docs/#api/en/materials/Material.blending](https://threejs.org/docs/#api/en/materials/Material.blending)
+
+#### blendEquation
+
+Blending equation to use when applying blending. See the blending equation constants for all possible values.
+
+The material's blending must be set to CustomBlending for this to have any effect. 
+
+Default is `DASH_MATERIAL_BLEND_EQUATION_ADD`.
+
+Reference: [https://threejs.org/docs/#api/en/materials/Material.blendEquation](https://threejs.org/docs/#api/en/materials/Material.blendEquation)
+
+#### blendSrc
+
+Blending source. See the source factors constants for all possible values.
+The material's blending must be set to CustomBlending for this to have any effect. 
+
+Default is `DASH_MATERIAL_SRC_ALPHA`.
+
+Reference: [https://threejs.org/docs/#api/en/materials/Material.blendSrc](https://threejs.org/docs/#api/en/materials/Material.blendSrc)
+
+#### blendDst
+
+Blending destination. See the destination factors constants for all possible values.
+The material's blending must be set to CustomBlending for this to have any effect. 
+
+Default is `DASH_MATERIAL_ONE_MINUS_SRC_ALPHA`.
+
+Reference: [https://threejs.org/docs/#api/en/materials/Material.blendDst](https://threejs.org/docs/#api/en/materials/Material.blendDst)
+
+
 ### **Constants**
 
 ```c
-
 // Shader Types
 
 #define DASH_MATERIAL_BASIC               "basic"
@@ -421,8 +459,8 @@ Default is `0`.
 
 // Boolean
 
-#define DASH_MATERIAL_TRUE 1
-#define DASH_MATERIAL_FALSE 0
+#define DASH_MATERIAL_TRUE                1
+#define DASH_MATERIAL_FALSE               0
 
 // Render Side
 
@@ -432,55 +470,33 @@ Default is `0`.
 
 // Blending
 
-enum DashBlending {
-  NoBlending = 0,  
-  NormalBlending = 1, 
-  AdditiveBlending = 2, 
-  SubtractiveBlending = 3, 
-  MultiplyBlending = 4,  
-  CustomBlending = 5, 
-}
+#define DASH_MATERIAL_BLENDING_NONE          0
+#define DASH_MATERIAL_BLENDING_NORMAL        1
+#define DASH_MATERIAL_BLENDING_ADDITIVE      2
+#define DASH_MATERIAL_BLENDING_SUBTRACTIVE   3
+#define DASH_MATERIAL_BLENDING_MULTIPLY      4
+#define DASH_MATERIAL_BLENDING_CUSTOM        5
+
 
 // Blend Equations
 
-enum DashBlendingEquations {
-  AddEquation = 100, 
-  SubtractEquation = 101, 
-  ReverseSubtractEquation = 102, 
-  MinEquation = 103,
-  MaxEquation = 104,
-}
-
-#define DASH_MATERIAL_NORMAL              0
-#define DASH_MATERIAL_ADDITIVE            1
-#define DASH_MATERIAL_SUBTRACT            2
-#define DASH_MATERIAL_MULTIPLY            3
+#define DASH_MATERIAL_BLEND_EQUATION_ADD              100
+#define DASH_MATERIAL_BLEND_EQUATION_SUBTRACT         101
+#define DASH_MATERIAL_BLEND_EQUATION_REVERSE_SUBTRACT 102
+#define DASH_MATERIAL_BLEND_EQUATION_MIN              103
+#define DASH_MATERIAL_BLEND_EQUATION_MAX              104
 
 // Blend Contansts
 
-enum DashSourceFactors {
-  ZeroFactor = 200,
-  OneFactor = 201,
-  SrcColorFactor = 202,
-  OneMinusSrcColorFactor = 203,
-  SrcAlphaFactor = 204,
-  OneMinusSrcAlphaFactor = 205,
-  DstAlphaFactor = 206,
-  OneMinusDstAlphaFactor = 207,
-  DstColorFactor = 208,
-  OneMinusDstColorFactor = 209,
-  SrcAlphaSaturateFactor = 210,
-}
-
-#define DASH_MATERIAL_ZERO                0
-#define DASH_MATERIAL_ONE                 1
-#define DASH_MATERIAL_SRC_COLOR           2
-#define DASH_MATERIAL_ONE_MINUS_SRC_COLOR 3
-#define DASH_MATERIAL_SRC_ALPHA           4
-#define DASH_MATERIAL_ONE_MINUS_SRC_ALPHA 5
-#define DASH_MATERIAL_DST_ALPHA           6
-#define DASH_MATERIAL_ONE_MINUS_DST_ALPHA 7
-#define DASH_MATERIAL_DST_COLOR           8
-#define DASH_MATERIAL_ONE_MINUS_DST_COLOR 9
-#define DASH_MATERIAL_SRC_ALPHA_SATURATE  10
+#define DASH_MATERIAL_ZERO                200
+#define DASH_MATERIAL_ONE                 201
+#define DASH_MATERIAL_SRC_COLOR           202
+#define DASH_MATERIAL_ONE_MINUS_SRC_COLOR 203
+#define DASH_MATERIAL_SRC_ALPHA           204
+#define DASH_MATERIAL_ONE_MINUS_SRC_ALPHA 205
+#define DASH_MATERIAL_DST_ALPHA           206
+#define DASH_MATERIAL_ONE_MINUS_DST_ALPHA 207
+#define DASH_MATERIAL_DST_COLOR           208
+#define DASH_MATERIAL_ONE_MINUS_DST_COLOR 209
+#define DASH_MATERIAL_SRC_ALPHA_SATURATE  210
 ```
