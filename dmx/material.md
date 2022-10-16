@@ -541,3 +541,9 @@ Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiv
 #define DASH_MATERIAL_ONE_MINUS_DST_COLOR             209
 #define DASH_MATERIAL_SRC_ALPHA_SATURATE              210
 ```
+
+## Limitations
+
+- material name might not be needed
+- we have two spaces that can be used for more information
+- limited set of materials to choose from, add toon?
