@@ -55,6 +55,10 @@ type DashTexture = {
 }
 ```
 
+### Limitations
+
+- Do we want to allow for `null` values to support a verbose mode?
+
 ## Binary
 
 <figure><img src=".gitbook/assets/dash_basics.png" alt=""><figcaption><p>Figure for DashGL binary file layout</p></figcaption></figure>
@@ -76,3 +80,9 @@ typedef struct {
 	uint32_t byteLength;
 } DashRawData;
 ```
+
+
+### Limitations
+
+- How humanly readable do we want to make the binary format to be?
+- Do we want to use arrays or structs for `vec2` and `vec3`?
