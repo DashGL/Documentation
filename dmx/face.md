@@ -10,27 +10,80 @@ description: Structures and linked data definitions for faces
 
 ```json
 {
-	"x": 0,
-	"y": 0,
-	"z": 0,
-	"skinIndex": [0,0,0,0],
-	"skinWeight": [0,0,0,0]
+	"material": 0,
+	"a": {
+    "index": 0,
+    "color": "rgb(255, 255, 255)",
+    "normal": [0, 0, 0],
+    "uv": [0, 0]
+  },
+  "b": {
+    "index": 0,
+    "color": "rgb(255, 255, 255)",
+    "normal": [0, 0, 0],
+    "uv": [0, 0]
+  },
+  "c": {
+    "index": 0,
+    "color": "rgb(255, 255, 255)",
+    "normal": [0, 0, 0],
+    "uv": [0, 0]
+  }
 }
 ```
 
 ### Type
 
 ```typescript
-type DashVertex = {
-	x: number,
-	y: number,
-	z: number,
-	skinIndex: number[] | undefined;
-	skinWeight: number[] | undefined;
+type DashPoint = {
+  index: number;
+  color: string | undefined;
+  normal: number[],
+  uv: number[] | undefined;
+}
+
+type DashFace = {
+	material: number;
+  a: DashPoint;
+  b: DashPoint;
+  c: DashPoint;
 }
 ```
 
 ### Fields
+
+#### material
+
+The index of the material to use for the face.
+
+#### a
+
+The `a` point for the triangular face
+
+#### b
+
+The `b` point for the triangular face
+
+#### c
+
+The `c` point for the triangular face
+
+#### index
+
+The index of the vertex from the vertex list which describes the position for the point.
+
+#### normal
+
+The normal value for the vertex as a vec3. 
+
+#### color
+
+The color for the vertex as an 8 byte rgba value. 
+
+#### uv
+
+The diffuse texture mapping for the vertex as vec2. A texture must be assigned 
+to the material for the face to this to have any effect. 
 
 
 ## Binary
@@ -40,20 +93,17 @@ type DashVertex = {
 ```c
 typedef struct {
   uint32_t index;
-  uint32_t materialIndex;
-  uint32_t visible;
-  uint32_t a;
-  uint32_t b;
-  uint32_t c;
-  uint8_t aVertecColor[4];
-  uint8_t bVertecColor[4];
-  uint8_t cVertecColor[4];
-  float aNrm[3];
-  float bNrm[3];
-  float cNrm[3];
-  float aUv[2];
-  float bUv[2];
-  float cUv[2];
+  uint8_t color[4];
+  float normal[3];
+  float uv[2];
+} DashPoint;
+
+typedef struct {
+  uint32_t index;
+  uint32_t material;
+  DashPoint a;
+  DashPoint b;
+  DashPoint c;
 } DashFace;
 ```
 
@@ -62,12 +112,12 @@ typedef struct {
 
 | Offset | 0x00  | 0x04  | 0x08       | 0x0c       |
 | ------ | ----- | ----- | ---------- | ---------- |
-| 0x0000 | index | materialIndex | a | b |
-| 0x0010 | c | aNrm[0] | aNrm[1] | aNrm[2] |
-| 0x0020 | bNrm[0] | bNrm[1] | bNrm[2] | cNrm[0] |
-| 0x0030 | cNrm[1] | cNrm[2] | aUv[0] | aUv[1] |
-| 0x0040 | bUv[0] | bUv[1] | cUv[0] | cUv[1] |
-| 0x0050 | aVertecColor | bVertexColor | cVertexColor |  |
+| 0x0000 | index | material | a.index | a.color |
+| 0x0010 | a.normal[0] | a.normal[1] | a.normal[2] | a.uv[0] |
+| 0x0020 | a.uv[1] | b.index | b.color | b.normal[0] |
+| 0x0030 | b.normal[1] | b.normal[2] | b.uv[0] | b.uv[1] |
+| 0x0040 | c.index | c.color | c.normal[0] | c.normal[1] |
+| 0x0050 | c.normal[2] | c.uv[0] | c.uv[1] |  |
 
 ### Fields
 
@@ -75,51 +125,43 @@ typedef struct {
 
 The index of the face in the array starting from zero.
 
-#### materialIndex
+#### material
 
 The index of the material to use for the face.
 
 #### a
 
-The `a` vertex index for the triangular face
+The `a` point for the triangular face
 
 #### b
 
-The `b` vertex index for the triangular face
+The `b` point for the triangular face
 
 #### c
 
-The `c` vertex index for the triangular face
+The `c` point for the triangular face
 
-#### aNrm
+#### index
 
-The normal value for the `a` vertex as a vec3.
+The index of the vertex from the vertex list which describes the position for the point.
 
-#### bNrm
+#### normal
 
-The normal value for the `b` vertex as a vec3.
+The normal value for the vertex as a vec3. 
 
-#### cNrm
+#### color
 
-The normal value for the `c` vertex as a vec3.
+The color for the vertex as an 8 byte rgba value. 
 
-#### aUv
+#### uv
 
-The diffuse texture mapping for the `a` vertex as vec2. A texture must be assigned 
+The diffuse texture mapping for the vertex as vec2. A texture must be assigned 
 to the material for the face to this to have any effect. 
 
-#### bUv
-
-The diffuse texture mapping for the `b` vertex as vec2. A texture must be assigned 
-to the material for the face to this to have any effect. 
-
-#### cUv
-
-The diffuse texture mapping for the `c` vertex as vec2. A texture must be assigned 
-to the material for the face to this to have any effect. 
 
 ## Limiations
 
-- Should we be using `{ x, y, z}` and `{ u, v }` structs?
+- Should we be using `{ x, y, z }` and `{ u, v }` structs?
 - We have a `nop` at the end of the face struct
 - Should we move normals, color and uv to the vertex definition?
+- Do we want to allow for nested types in our definition?
