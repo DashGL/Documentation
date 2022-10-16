@@ -282,8 +282,10 @@ typedef struct {
   char name[0x20];
   uint32_t index;
   char shader[0x0c];
+  uint32_t visible;
   uint32_t transparent;
-  uint32_t useVertexColor;
+  uint32_t vertexColors;
+  uint32_t flatShading;
   uint32_t renderSide;
   float alphaTest;
   uint32_t useMap;
