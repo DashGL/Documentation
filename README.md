@@ -57,6 +57,8 @@ type DashTexture = {
 
 ## Binary
 
+<figure><img src=".gitbook/assets/dash_basics.png" alt=""><figcaption><p>Figure for DashGL binary file layout</p></figcaption></figure>
+
 ### Version Changes
 
 The following changes have been made since version 1.0
