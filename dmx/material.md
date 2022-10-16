@@ -332,7 +332,7 @@ The index of the material in the array starting from zero.
 
 #### shader
 
-Indicates the shader type for the material. Options are `DASH_MATERIAL_BASIC`, `DASH_MATERIAL_LAMBERT` and `DASH_MATERIAL_PHONG`. Values must be zero terminated to fit `0x0c` bytes.
+Indicates the shader type for the material. Options are `DASH_MATERIAL_BASIC`, `DASH_MATERIAL_LAMBERT` and `DASH_MATERIAL_PHONG`.
 
 #### visible
 
@@ -450,7 +450,7 @@ Float in the range of 0.0 - 1.0 indicating how transparent the material is. A va
 
 If the material's transparent property is not set to `true`, the material will remain fully opaque and this value will only affect its color.
 
-Default is `1`.
+Default is `1.0f`.
 
 Reference: [https://threejs.org/docs/#api/en/materials/Material.opacity](https://threejs.org/docs/#api/en/materials/Material.opacity)
 
@@ -466,7 +466,7 @@ Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.specula
 
 How shiny the .specular highlight is; a higher value gives a sharper highlight.
 
-Default is `30f`.
+Default is `30.0f`.
 
 Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.shininess](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.shininess)
 
@@ -482,7 +482,7 @@ Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiv
 
 Intensity of the emissive light. Modulates the emissive color. The material's shader must be set to `phong` for this to have any effect.
 
-Default is `1f`.
+Default is `1.0f`.
 
 Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity)
 
@@ -491,29 +491,29 @@ Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiv
 ```c
 // Shader Types
 
-#define DASH_MATERIAL_BASIC               "basic"
-#define DASH_MATERIAL_LAMBERT             "lambert"
-#define DASH_MATERIAL_PHONG               "phong"
+#define DASH_MATERIAL_BASIC                          "basic"
+#define DASH_MATERIAL_LAMBERT                        "lambert"
+#define DASH_MATERIAL_PHONG                          "phong"
 
 // Boolean
 
-#define DASH_MATERIAL_TRUE                1
-#define DASH_MATERIAL_FALSE               0
+#define DASH_MATERIAL_FALSE                           0
+#define DASH_MATERIAL_TRUE                            1
 
 // Render Side
 
-#define DASH_MATERIAL_FRONTSIDE           0
-#define DASH_MATERIAL_BACKSIDE            1
-#define DASH_MATERIAL_DOUBLESIDE          2
+#define DASH_MATERIAL_FRONTSIDE                       0
+#define DASH_MATERIAL_BACKSIDE                        1
+#define DASH_MATERIAL_DOUBLESIDE                      2
 
 // Blending
 
-#define DASH_MATERIAL_BLENDING_NONE          0
-#define DASH_MATERIAL_BLENDING_NORMAL        1
-#define DASH_MATERIAL_BLENDING_ADDITIVE      2
-#define DASH_MATERIAL_BLENDING_SUBTRACTIVE   3
-#define DASH_MATERIAL_BLENDING_MULTIPLY      4
-#define DASH_MATERIAL_BLENDING_CUSTOM        5
+#define DASH_MATERIAL_BLENDING_NONE                   0
+#define DASH_MATERIAL_BLENDING_NORMAL                 1
+#define DASH_MATERIAL_BLENDING_ADDITIVE               2
+#define DASH_MATERIAL_BLENDING_SUBTRACTIVE            3
+#define DASH_MATERIAL_BLENDING_MULTIPLY               4
+#define DASH_MATERIAL_BLENDING_CUSTOM                 5
 
 
 // Blend Equations
@@ -526,15 +526,15 @@ Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiv
 
 // Blend Contansts
 
-#define DASH_MATERIAL_ZERO                200
-#define DASH_MATERIAL_ONE                 201
-#define DASH_MATERIAL_SRC_COLOR           202
-#define DASH_MATERIAL_ONE_MINUS_SRC_COLOR 203
-#define DASH_MATERIAL_SRC_ALPHA           204
-#define DASH_MATERIAL_ONE_MINUS_SRC_ALPHA 205
-#define DASH_MATERIAL_DST_ALPHA           206
-#define DASH_MATERIAL_ONE_MINUS_DST_ALPHA 207
-#define DASH_MATERIAL_DST_COLOR           208
-#define DASH_MATERIAL_ONE_MINUS_DST_COLOR 209
-#define DASH_MATERIAL_SRC_ALPHA_SATURATE  210
+#define DASH_MATERIAL_ZERO                            200
+#define DASH_MATERIAL_ONE                             201
+#define DASH_MATERIAL_SRC_COLOR                       202
+#define DASH_MATERIAL_ONE_MINUS_SRC_COLOR             203
+#define DASH_MATERIAL_SRC_ALPHA                       204
+#define DASH_MATERIAL_ONE_MINUS_SRC_ALPHA             205
+#define DASH_MATERIAL_DST_ALPHA                       206
+#define DASH_MATERIAL_ONE_MINUS_DST_ALPHA             207
+#define DASH_MATERIAL_DST_COLOR                       208
+#define DASH_MATERIAL_ONE_MINUS_DST_COLOR             209
+#define DASH_MATERIAL_SRC_ALPHA_SATURATE              210
 ```
