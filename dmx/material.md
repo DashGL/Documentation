@@ -13,24 +13,24 @@ The only required field for `Materials` is the `name`. All other fields will pro
 ```json
 {
   "name" : "material-000",
-  "transparent": false,
-  "alphaTest": 0,
+  "shader": "basic",
   "visible": true,
+  "transparent": false,
   "vertexColors": false,
-  "color": "rgb(255,255,255)",
-  "map": null,
   "renderSide": "front",
+  "flatShading": false,
+  "alphaTest": 0,
+  "map": null,
   "blending" : "custom",
   "blendEquation" : "additive",
   "blendSrc" : "srcAlphaFactor",
   "blendDst" : "oneMinusSrcAlphaFactor",
-  "emissive": "rgb(0,0,0)",
-  "emissiveIntensity": 1,
+  "color": "rgb(255,255,255)",
+  "opacity": 1,
   "specularColor": "rgb(0,0,0)",
   "shininess": 30,
-  "shaderType": "basic",
-  "opacity": 1,
-  "flatShading": false
+  "emissive": "rgb(0,0,0)",
+  "emissiveIntensity": 0
 }
 ```
 
@@ -311,7 +311,7 @@ typedef struct {
 | 0x0030 | visible      | transparent      | vertexColors | renderSide        |
 | 0x0040 | flatShading  | alphaTest        | useMap       | mapIndex          |
 | 0x0050 | blending     | blendingEquation | blendingSrc  | blendingDst       |
-| 0x0060 | color\[0]    | color\[1]        | color\[2]    | transparency      |
+| 0x0060 | color\[0]    | color\[1]        | color\[2]    | opacity           |
 | 0x0070 | specular\[0] | specular\[1]     | specular\[2] | shininess         |
 | 0x0080 | emissive\[0] | emissive\[1]     | emissive\[2] | emissiveIntensity |
 
