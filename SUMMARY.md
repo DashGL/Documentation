@@ -4,3 +4,4 @@
   * [Texture](dmx/texture.md)
   * [Material](dmx/material.md)
   * [Vertex](dmx/vertex.md)
+  * [Face](dmx/face.md)
