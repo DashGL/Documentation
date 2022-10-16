@@ -74,3 +74,8 @@ typedef struct {
   float skinWeight[4];
 } DashVertex;
 ```
+
+### Table
+
+<table><thead><tr><th>Offset</th><th data-type="number">0x00</th><th data-type="number">0x04</th><th data-type="number">0x08</th><th data-type="number">0x0c</th></tr></thead><tbody><tr><td>0x0000</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>0x0010</td><td>null</td><td>null</td><td>null</td><td>null</td></tr><tr><td>0x0020</td><td>null</td><td>null</td><td>null</td><td>null</td></tr></tbody></table>
+
