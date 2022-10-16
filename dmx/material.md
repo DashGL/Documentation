@@ -317,7 +317,6 @@ typedef struct {
 | 0x0070 | specular\[0] | specular\[1]     | specular\[2] | shininess         |
 | 0x0080 | emissive\[0] | emissive\[1]     | emissive\[2] | emissiveIntensity |
 
-
 ### Terms
 
 The binary format of the material format uses the same attribute names where ever possible. The difference is that in the binary version, default values WILL NOT BE PROVIDED. They MUST BE defined in the struct.
@@ -335,6 +334,8 @@ The index of the material in the array starting from zero.
 #### shader
 
 Indicates the shader type for the material. Options are `DASH_MATERIAL_BASIC`, `DASH_MATERIAL_LAMBERT` and `DASH_MATERIAL_PHONG`.
+
+Default is: `DASH_MATERIAL_BASIC`
 
 #### visible
 
