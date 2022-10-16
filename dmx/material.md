@@ -17,8 +17,8 @@ The only required field for `Materials` is the `name`. All other fields will pro
   "visible": true,
   "transparent": false,
   "vertexColors": false,
-  "renderSide": "front",
   "flatShading": false,
+  "renderSide": "front",
   "alphaTest": 0,
   "map": null,
   "blending" : "custom",
@@ -39,24 +39,24 @@ The only required field for `Materials` is the `name`. All other fields will pro
 ```typescript
 type DashMatrial = {
     name: string;
-    transparent: boolean | undefined;
-    alphaTest: number | undefined;
+    shader: DashShaderType | undefined;
     visible: boolean | undefined;
+    transparent: boolean | undefined;
     vertexColors: boolean | undefined;
-    color: string | undefined;
-    map: number | null | undefined;
+    flatShading: boolean | undefined;
     renderSide: DashMaterialSide | undefined;
+    alphaTest: number | undefined;
+    map: number | null | undefined;
     blending: DashBlending | undefined;
     blendEquation: DashBlendingEquations | undefined;
     blendSrc: DashSourceFactors | undefined;
     blendDst: DashSourceFactors | undefined;
-    emissiveColor: string | undefined;
-    emissiveIntensity: number | undefined;
+    color: string | undefined;
+    opacity: number | undefined;
     specular: string | undefined;
     shininess: number | undefined;
-    shaderType: DashShaderType | undefined;
-    opacity: number | undefined;
-    flatShading: boolean | undefined;
+    emissiveColor: string | undefined;
+    emissiveIntensity: number | undefined;
 }
 ```
 
@@ -70,21 +70,9 @@ In cases for exporting a material with no name to the `.dmx` format, the default
 
 Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.name](https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.name)
 
-#### transparent
+#### shader
 
-A boolean to value to indicate if the material uses alpha or not. The determines if the material uses the alpha channel for the diffuse color (`.color`), diffuse texture(`.map`) and vertex colors. The `opacity` value will be ignored if this value is `false`.
-
-Default is `false`.
-
-Reference: [https://threejs.org/docs/index.html#api/en/materials/Material.transparent](https://threejs.org/docs/index.html#api/en/materials/Material.transparent)
-
-#### alphaTest
-
-Sets the alpha value to be used when running an alpha test. The material will not be rendered if the opacity is lower than this value.
-
-Default is `0`.
-
-Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.alphaTest](https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.alphaTest)
+Indicates the shader type for the material. Options are `basic`, `lambert` and `phong`.
 
 #### visible
 
@@ -94,6 +82,14 @@ Default is `true`.
 
 Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.visible](https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.visible)
 
+#### transparent
+
+A boolean to value to indicate if the material uses alpha or not. The determines if the material uses the alpha channel for the diffuse color (`.color`), diffuse texture(`.map`) and vertex colors. The `opacity` value will be ignored if this value is `false`.
+
+Default is `false`.
+
+Reference: [https://threejs.org/docs/index.html#api/en/materials/Material.transparent](https://threejs.org/docs/index.html#api/en/materials/Material.transparent)
+
 #### vertexColors
 
 Defines whether vertex coloring is used.
@@ -102,23 +98,13 @@ Default is `false`.
 
 Reference: [https://threejs.org/docs/#api/en/materials/Material.vertexColors](https://threejs.org/docs/#api/en/materials/Material.vertexColors)
 
-#### color
+#### flatShading
 
-The diffuse color for the material.
+Define whether the material is rendered with flat shading. The material's shader must be set to `phong` or `lambert` for this to have any effect.
 
-Expected format an color value in the functional notation is ‘rgb(’ followed by a comma-separated list of three numerical values, three integer values between 0 and 255 corresponding to red, green, and blue values followed by ‘)’.
+Default is `false`.
 
-Default is: `rgb(255, 255, 255)`
-
-Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/MeshBasicMaterial.color](https://threejs.org/docs/index.html?q=mater#api/en/materials/MeshBasicMaterial.color)
-
-#### map
-
-The color map. May optionally include an alpha channel, typically combined with `transparent` or `alphaTest`. The value is the index of the texture to use for diffuse color mapping. A `null` value indicates no texture map is assigned.
-
-Default is `null`.
-
-Reference: [https://threejs.org/docs/index.html#api/en/materials/MeshBasicMaterial.map](https://threejs.org/docs/index.html#api/en/materials/MeshBasicMaterial.map)
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading)
 
 #### renderSide
 
@@ -135,6 +121,22 @@ The side casting shadows is determined as follows:
 Default is: `DashMaterialSide.FrontSide`
 
 Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.side](https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.side)
+
+#### alphaTest
+
+Sets the alpha value to be used when running an alpha test. The material will not be rendered if the opacity is lower than this value.
+
+Default is `0`.
+
+Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.alphaTest](https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.alphaTest)
+
+#### map
+
+The color map. May optionally include an alpha channel, typically combined with `transparent` or `alphaTest`. The value is the index of the texture to use for diffuse color mapping. A `null` value indicates no texture map is assigned.
+
+Default is `null`.
+
+Reference: [https://threejs.org/docs/index.html#api/en/materials/MeshBasicMaterial.map](https://threejs.org/docs/index.html#api/en/materials/MeshBasicMaterial.map)
 
 #### blending
 
@@ -170,23 +172,25 @@ Default is `OneMinusSrcAlphaFactor`.
 
 Reference: [https://threejs.org/docs/#api/en/materials/Material.blendDst](https://threejs.org/docs/#api/en/materials/Material.blendDst)
 
-#### emissive
+#### color
 
-Emissive (light) color of the material, essentially a solid color unaffected by other lighting. The material's shader must be set to `phong` for this to have any effect.
+The diffuse color for the material.
 
 Expected format an color value in the functional notation is ‘rgb(’ followed by a comma-separated list of three numerical values, three integer values between 0 and 255 corresponding to red, green, and blue values followed by ‘)’.
 
-Default is: `rgb(0, 0, 0)`
+Default is: `rgb(255, 255, 255)`
 
-Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissive](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissive)
+Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/MeshBasicMaterial.color](https://threejs.org/docs/index.html?q=mater#api/en/materials/MeshBasicMaterial.color)
 
-#### emissiveIntensity
+#### opacity
 
-Intensity of the emissive light. Modulates the emissive color. The material's shader must be set to `phong` for this to have any effect.
+Float in the range of 0.0 - 1.0 indicating how transparent the material is. A value of 0.0 indicates fully transparent, 1.0 is fully opaque.
+
+If the material's transparent property is not set to `true`, the material will remain fully opaque and this value will only affect its color.
 
 Default is `1`.
 
-Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity)
+Reference: [https://threejs.org/docs/#api/en/materials/Material.opacity](https://threejs.org/docs/#api/en/materials/Material.opacity)
 
 #### specular
 
@@ -204,27 +208,23 @@ Default is `30`.
 
 Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.shininess](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.shininess)
 
-#### shaderType
+#### emissive
 
-Indicates the shader type for the material. Options are `basic`, `lambert` and `phong`.
+Emissive (light) color of the material, essentially a solid color unaffected by other lighting. The material's shader must be set to `phong` for this to have any effect.
 
-#### opacity
+Expected format an color value in the functional notation is ‘rgb(’ followed by a comma-separated list of three numerical values, three integer values between 0 and 255 corresponding to red, green, and blue values followed by ‘)’.
 
-Float in the range of 0.0 - 1.0 indicating how transparent the material is. A value of 0.0 indicates fully transparent, 1.0 is fully opaque.
+Default is: `rgb(0, 0, 0)`
 
-If the material's transparent property is not set to `true`, the material will remain fully opaque and this value will only affect its color.
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissive](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissive)
+
+#### emissiveIntensity
+
+Intensity of the emissive light. Modulates the emissive color. The material's shader must be set to `phong` for this to have any effect.
 
 Default is `1`.
 
-Reference: [https://threejs.org/docs/#api/en/materials/Material.opacity](https://threejs.org/docs/#api/en/materials/Material.opacity)
-
-#### flatShading
-
-Define whether the material is rendered with flat shading. The material's shader must be set to `phong` or `lambert` for this to have any effect.
-
-Default is `false`.
-
-Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading)
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.emissiveIntensity)
 
 #### Enums
 
@@ -308,12 +308,13 @@ typedef struct {
 | 0x0000 | name         | 0000             | 0000         | 0000              |
 | 0x0010 | 0000         | 0000             | 0000         | 0000              |
 | 0x0020 | index        | shader           | 0000         | 0000              |
-| 0x0030 | visible      | transparent      | vertexColors | renderSide        |
-| 0x0040 | flatShading  | alphaTest        | useMap       | mapIndex          |
+| 0x0030 | visible      | transparent      | vertexColors | flatShading       |
+| 0x0040 | renderSide   | alphaTest        | useMap       | mapIndex          |
 | 0x0050 | blending     | blendingEquation | blendingSrc  | blendingDst       |
 | 0x0060 | color\[0]    | color\[1]        | color\[2]    | opacity           |
 | 0x0070 | specular\[0] | specular\[1]     | specular\[2] | shininess         |
 | 0x0080 | emissive\[0] | emissive\[1]     | emissive\[2] | emissiveIntensity |
+
 
 ### Terms
 
@@ -357,6 +358,14 @@ Default is `DASH_MATERIAL_FALSE`.
 
 Reference: [https://threejs.org/docs/index.html#api/en/materials/Material.vertexColors](https://threejs.org/docs/index.html#api/en/materials/Material.vertexColors)
 
+#### flatShading
+
+Define whether the material is rendered with flat shading. The material's shader must be set to `DASH_MATERIAL_LAMBERT` or `DASH_MATERIAL_PHONG` for this to have any effect.
+
+Default is `DASH_MATERIAL_FALSE`.
+
+Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading)
+
 #### renderSide
 
 Defines which side of faces will be rendered - front, back or both. Options are `DASH_MATERIAL_FRONTSIDE`, `DASH_MATERIAL_BACKSIDE`, `DASH_MATERIAL_DOUBLESIDE`.
@@ -372,14 +381,6 @@ The side casting shadows is determined as follows:
 Default is: `DASH_MATERIAL_FRONTSIDE`
 
 Reference: [https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.side](https://threejs.org/docs/index.html?q=mater#api/en/materials/Material.side)
-
-#### flatShading
-
-Define whether the material is rendered with flat shading. The material's shader must be set to `DASH_MATERIAL_LAMBERT` or `DASH_MATERIAL_PHONG` for this to have any effect.
-
-Default is `DASH_MATERIAL_FALSE`.
-
-Reference: [https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial.flatShading)
 
 #### alphaTest
 
