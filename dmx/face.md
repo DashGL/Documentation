@@ -4,14 +4,26 @@ description: Structures and linked data definitions for faces
 
 # Face
 
+The `Face` array defines the list of faces for the mesh. Each face defines a material index,
+which gives the face its color properties based on material defined from the material list.
+Faces are all trianges and define `a`, `b`, `c` indices from the vertex list for the position.
+
+Each vertex can additionally be provided with `color`, `normals` and `uv`. The reason that 
+these are defined here and not in the vertex list, is because the vertex list is intended to
+be a unique list of positions associated with weight. The attributes of `color`, `normals`, 
+and `uv` define properties of a face-per-point. And as such were included in the face
+definition for the purposes of defining an interchange format. 
+
+In the case of a delivery format, these properties would be declared in the vertex list.
+
 ## JSON
 
 ### Format
 
 ```json
 {
-	"material": 0,
-	"a": {
+  "material": 0,
+  "a": {
     "index": 0,
     "color": "rgb(255, 255, 255)",
     "normal": [0, 0, 0],
@@ -43,7 +55,7 @@ type DashPoint = {
 }
 
 type DashFace = {
-	material: number;
+  material: number;
   a: DashPoint;
   b: DashPoint;
   c: DashPoint;
