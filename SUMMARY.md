@@ -5,3 +5,4 @@
   * [Material](dmx/material.md)
   * [Vertex](dmx/vertex.md)
   * [Face](dmx/face.md)
+  * [Skeleton](dmx/skeleton.md)
