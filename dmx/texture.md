@@ -82,9 +82,9 @@ Reference: [https://qoiformat.org/](https://qoiformat.org/)
 
 ```typescript
 enum DashTextureWrap {
-  RepeatWrapping = 1000,
-  ClampToEdgeWrapping = 1001,
-  MirroredRepeatWrapping = 1002,
+  RepeatWrapping = "repeat",
+  ClampToEdgeWrapping = "clamp",
+  MirroredRepeatWrapping = "mirror",
 }
 ```
 
