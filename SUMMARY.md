@@ -6,3 +6,4 @@
   * [Vertex](dmx/vertex.md)
   * [Face](dmx/face.md)
   * [Skeleton](dmx/skeleton.md)
+  * [Animation](dmx/animation.md)

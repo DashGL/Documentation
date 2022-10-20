@@ -47,12 +47,22 @@ E -->|indices| F
 
 ## JSON
 
+For the four required fields are `type`, `material`, `vertex` and `face`.  
+
+
+```json
+{
+    "type": "DashModelExchange"
+}
+```
+
 ### Type
 
 ```typescript
 type DashTexture = {
+    type: string,
     texture: DashTexture[] | undefined;
-    material: DashMaterial[] | undefined;
+    material: DashMaterial[];
     vertex: DashVertex[];
     face: DashFace[];
     bone: DashBone[] | undefined;
