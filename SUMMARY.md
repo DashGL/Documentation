@@ -1,9 +1,13 @@
 # Table of contents
 
-* [Dash Model Exchange](README.md)
-  * [Texture](dmx/texture.md)
-  * [Material](dmx/material.md)
-  * [Vertex](dmx/vertex.md)
-  * [Face](dmx/face.md)
-  * [Skeleton](dmx/skeleton.md)
-  * [Animation](dmx/animation.md)
+* [Introduction](README.md)
+
+## Exchange
+
+* [Dash Format](exchange/dash/README.md)
+  * [Texture](exchange/dash/texture.md)
+  * [Material](exchange/dash/material.md)
+  * [Vertex](exchange/dash/vertex.md)
+  * [Face](exchange/dash/face.md)
+  * [Skeleton](exchange/dash/skeleton.md)
+  * [Animation](exchange/dash/animation.md)
