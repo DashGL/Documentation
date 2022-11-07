@@ -12,6 +12,6 @@
   * [Skeleton](exchange/dash/skeleton.md)
   * [Animation](exchange/dash/animation.md)
 
-## Megaman Legends
+## Megaman Legends <a href="#mml" id="mml"></a>
 
-* [Megaman Legends 2](megaman-legends/megaman-legends-2.md)
+* [Megaman Legends 2](mml/megaman-legends-2.md)
