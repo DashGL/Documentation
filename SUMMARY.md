@@ -14,6 +14,6 @@
 
 ## Megaman Legends 2 <a href="#mml2" id="mml2"></a>
 
-* [Versions](mml2/versions/README.md)
+* [Versions](mml/megaman-legends-2.md)
   * [PlayStation](mml2/versions/playstation.md)
 * [File Formats](mml2/file-formats.md)

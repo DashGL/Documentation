@@ -2,7 +2,7 @@
 description: Overview of Legends 2 files and games
 ---
 
-# Megaman Legends 2
+# Versions
 
 Megaman Legends 2 was the follow up to Megaman Legends 1 that was released for the Playstation console in 2000. It was later re-released in Japan for the Playstation portable. And the game also has a Japanese only Windows release.
 
