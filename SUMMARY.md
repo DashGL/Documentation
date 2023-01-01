@@ -19,6 +19,6 @@
   * [PlayStation](mml2/versions/playstation.md)
   * [Playstation Portable](mml2/versions/playstation-portable.md)
 * [File Formats](mml2/file-formats/README.md)
-  * [DAT](mml2/file-formats/dat.md)
-  * [BIN](mml2/file-formats/bin.md)
+  * [DAT (PC)](mml2/file-formats/dat-pc.md)
+  * [BIN (PSX/PSP)](mml2/file-formats/bin-psx-psp.md)
   * [Textures](mml2/file-formats/textures.md)

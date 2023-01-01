@@ -1,4 +1,4 @@
-# DAT
+# DAT (PC)
 
 `.DAT` is the file extension used for the PC versions bundle format. The term "bundle" is used in favor of "archive" as the purpose of these files isn't to compress the contents as all of the files are in a non-compressed state in the file. The purpose of these files is to group the assets needed for scene files into specific files.&#x20;
 
