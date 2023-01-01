@@ -12,6 +12,8 @@
   * [Skeleton](exchange/dash/skeleton.md)
   * [Animation](exchange/dash/animation.md)
 
-## Megaman Legends <a href="#mml" id="mml"></a>
+## Megaman Legends 2 <a href="#mml2" id="mml2"></a>
 
-* [Megaman Legends 2](mml/megaman-legends-2.md)
+* [Versions](mml2/versions/README.md)
+  * [PlayStation](mml2/versions/playstation.md)
+* [File Formats](mml2/file-formats.md)
