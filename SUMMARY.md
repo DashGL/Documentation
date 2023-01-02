@@ -22,3 +22,4 @@
   * [DAT (PC)](mml2/file-formats/dat-pc.md)
   * [BIN (PSX/PSP)](mml2/file-formats/bin-psx-psp.md)
   * [Textures](mml2/file-formats/textures.md)
+  * [Entities](mml2/file-formats/entities.md)

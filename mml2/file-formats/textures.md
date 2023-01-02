@@ -18,6 +18,8 @@ The `.BIN` format includes meta data about the texture in the PlayStation `.BIN`
 | 0x0010 | num color / pal | image x/y    | width/height | unk\_b |
 | 0x0020 | unk\_c          | bitfieldSize | unk\_d       | unk\_e |
 
+* [ ] TODO: Read through all of the textures in the game to come up with a list of all variations for possible values
+
 ### Struct
 
 ```c
