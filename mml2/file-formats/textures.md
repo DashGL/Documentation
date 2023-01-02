@@ -12,11 +12,11 @@ The `.BIN` format includes meta data about the texture in the PlayStation `.BIN`
 
 ### Table
 
-| Offset | 0x00            | 0x04      | 0x08         | 0x0c         |
-| ------ | --------------- | --------- | ------------ | ------------ |
-| 0x0000 | type            | full size | palette x/y  | unk\_a       |
-| 0x0010 | num color / pal | image x/y | width/height | unk\_b       |
-| 0x0020 | unk\_c          | unk\_d    | unk\_e       | bitfieldSize |
+| Offset | 0x00            | 0x04         | 0x08         | 0x0c   |
+| ------ | --------------- | ------------ | ------------ | ------ |
+| 0x0000 | type            | full size    | palette x/y  | unk\_a |
+| 0x0010 | num color / pal | image x/y    | width/height | unk\_b |
+| 0x0020 | unk\_c          | bitfieldSize | unk\_d       | unk\_e |
 
 ### Struct
 
@@ -86,6 +86,12 @@ The size of the bitfield used for compression, when compression is used. A compr
 ## Framebuffer
 
 The framebuffer is a 1MB area of dedicated RAM where the PlayStation copies in images to be used as textures for 3d models and sprites.&#x20;
+
+<figure><img src="../../.gitbook/assets/Screenshot_20230101_113748.png" alt="Megaman Legends 2 Framebuffer"><figcaption><p>Example of framebuffer content during gameplay</p></figcaption></figure>
+
+The framebuffer is generally represented as a 1024x512 image, where each pixel is created by two bytes of RGBA5551 data. In the image above we can see the different areas of how Megaman Legends uses this area. In the yellow we can see the area where the screen is shown to the player and where the screen is drawn in the background outlined in yellow.
+
+Adjacent to each of these are the palette colors which are outlined with cyan. Everything else to the right of the framebuffer outlined in red is the image data for the textures. The reason these are narrow and discolored is because these are indexed textures where the values of the pixels are numbered from 0-15 (4 bits) which represent a color in a palette. Which will be combined at draw time to produce a texture with the intended size and color.&#x20;
 
 ## Examples
 
