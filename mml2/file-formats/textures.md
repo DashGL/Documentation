@@ -129,7 +129,7 @@ We should get the following values parsed from the header.
 
 With respect to decompressing textures, we want to focus on `type`, `fullSize`, and `bitfieldSize`. For `type` we would expect to be decalred as `3` with a non-zero number declared in the `bitfieldSize` attribute to indicate a compressed texture. The `fullSize` attribute is the size of the target buffer.
 
-The steps for decompressing the texture as as follws.&#x20;
+The steps for decompressing the texture as as follows.&#x20;
 
 1. Create the target buffer
 2. Read the bitfield
@@ -141,3 +141,7 @@ The instructions for reading the payload as as files.&#x20;
 2. If the bit is 0 copy the word directly into the current offset of the target buffer
 3. if the bit is 1 and the word is 0xFFFF advance the window by 0x2000
 4. Otherwise if the bit is 1, read the first 3 bits of the word as the length of words, and the upper five bits as an offset from the current target offset window, and copy that those bytes to the end of the window in the target buffer
+
+<figure><img src="../../.gitbook/assets/example.png" alt=""><figcaption><p>Example compressed texture</p></figcaption></figure>
+
+The full source code for this example can be found here: [https://gitlab.com/dashgl/mml2-tools/-/blob/master/debug/textures/example.ts](https://gitlab.com/dashgl/mml2-tools/-/blob/master/debug/textures/example.ts)
