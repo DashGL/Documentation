@@ -35,9 +35,9 @@ typedef struct {
     uint16_t height;
     uint32_t unk_b;
     uint32_t unk_c;
+    uint32_t bitfieldSize;
     uint32_t unk_d;
     uint32_t unk_e;
-    uint32_t bitfieldSize;
 } BinTextureHeader;
 ```
 
@@ -83,3 +83,55 @@ In order to convert the framebuffer width into a normal pixel width, the width s
 
 The size of the bitfield used for compression, when compression is used. A compressed image will have both the palette section and the image data compressed together. In order to decompress the image, the bitfield must first be read, an empty target buffer with the `fullSize` length initiated. And the the `bitfield` will define how to read, copy, or move the window required to decompress the payload.&#x20;
 
+## Framebuffer
+
+The framebuffer is a 1MB area of dedicated RAM where the PlayStation copies in images to be used as textures for 3d models and sprites.&#x20;
+
+## Examples
+
+### Compressed Palette + Image
+
+In this example we will cover how to read a compressed palette + image data texture from an archive file. We will use a specific example from the file `ST0FT.BIN`, and go through the steps and code required to unpack it. Once the image is unpacked, the unpacked data should be effectively the same as&#x20;
+
+<figure><img src="../../.gitbook/assets/Megaman Diagrams - Texture formats.jpg" alt="Megaman Legends 2 compressed textures"><figcaption><p>Example diagram for how to read a compressed texture from an archive file</p></figcaption></figure>
+
+The file we're going to use as an example can be found at offset `0x01b000`. In raw binary data this looks like the following.&#x20;
+
+```
+00001b000: 03000000 20800000 0a000000 0000f900  .... ...........
+00001b010: 10000100 80010001 40000001 00000000  ........@.......
+00001b020: 00000000 b0040000 00000000 00000000  ................
+```
+
+We should get the following values parsed from the header.
+
+```json
+{
+  type: 3,
+  fullSize: 32800,
+  paletteX: 0,
+  paletteY: 249,
+  colorCount: 16,
+  paletteCount: 1,
+  imageX: 384,
+  imageY: 256,
+  width: 64,
+  height: 256,
+  bitfieldSize: 1200
+}
+```
+
+With respect to decompressing textures, we want to focus on `type`, `fullSize`, and `bitfieldSize`. For `type` we would expect to be decalred as `3` with a non-zero number declared in the `bitfieldSize` attribute to indicate a compressed texture. The `fullSize` attribute is the size of the target buffer.
+
+The steps for decompressing the texture as as follws.&#x20;
+
+1. Create the target buffer
+2. Read the bitfield
+3. Read the payload
+
+The instructions for reading the payload as as files.&#x20;
+
+1. For each bit in the bitfield read a 2 byte work
+2. If the bit is 0 copy the word directly into the current offset of the target buffer
+3. if the bit is 1 and the word is 0xFFFF advance the window by 0x2000
+4. Otherwise if the bit is 1, read the first 3 bits of the word as the length of words, and the upper five bits as an offset from the current target offset window, and copy that those bytes to the end of the window in the target buffer
