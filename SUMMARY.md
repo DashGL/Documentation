@@ -23,3 +23,6 @@
   * [BIN (PSX/PSP)](mml2/file-formats/bin-psx-psp.md)
   * [Textures](mml2/file-formats/textures.md)
   * [Entities](mml2/file-formats/entities.md)
+* [Textures](mml2/textures/README.md)
+  * [PSX Textures](mml2/textures/psx-textures.md)
+  * [PC Textures](mml2/textures/pc-textures.md)
